@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ivodocker-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/PauloHenriqueJunio/ivodocker.git'
+    path: helm/ivodocker-chart # Caminho para o seu Helm Chart dentro do repositório
+    targetRevision: dev # IMPORTANTE: "Assiste" à branch 'dev'
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev # Implanta a aplicação no namespace 'dev'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true # Cria o namespace 'dev' se não existir
