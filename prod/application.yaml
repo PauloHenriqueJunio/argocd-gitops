@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/PauloHenriqueJunio/ivodocker.git'
-    path: helm/ivodocker-chart
+    path: prod
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
