@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://github.com/PauloHenriqueJunio/ivodocker.git'
     path: helm/ivodocker-chart
-    targetRevision: dev
+    targetRevision: teste-argo-cd
     helm:
       valueFiles:
         - values-dev.yaml
