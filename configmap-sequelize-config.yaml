@@ -23,7 +23,7 @@ metadata:
 data:
   config.js: |
     module.exports = {
-      development: {
+      production: {
         username: process.env.DB_USER || "root",
         password: process.env.DB_PASSWORD || "password",
         database: process.env.DB_NAME || "ivodocker_dev",
