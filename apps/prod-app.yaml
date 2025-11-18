@@ -22,4 +22,4 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
-      - ApplyOutOfSyncOnly=true
+      - Replace=true
