@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://mysql.github.io/mysql-operator/
     chart: mysql-operator
-    targetRevision: 2.2.6 # pode deixar essa versão
+    targetRevision: 2.2.6 
     path: ""
 
   destination:
@@ -22,7 +22,7 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - ApplyOutOfSyncOnly=true # evita destruir recursos
+      - ApplyOutOfSyncOnly=true 
       - RespectIgnoreDifferences=true
       - ServerSideApply=true
 
