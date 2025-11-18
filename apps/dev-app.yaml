@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/PauloHenriqueJunio/ivodocker.git'
-    targetRevision: dev
     path: helm/ivodocker-chart
+    targetRevision: dev
     helm:
       valueFiles:
         - values-dev.yaml
@@ -20,4 +20,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+      - CreateNamespace=true
