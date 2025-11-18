@@ -1,0 +1,11 @@
+apiVersion: mysql.oracle.com/v2
+kind: InnoDBCluster
+metadata:
+  name: mysql-prod
+  namespace: prod
+spec:
+  secretName: mysql-secret
+  tlsUseSelfSigned: true
+  instances: 1
+  router:
+    instances: 1
