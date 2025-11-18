@@ -5,16 +5,29 @@ metadata:
   namespace: argocd
 spec:
   project: default
+
   source:
-    repoURL: 'https://mysql.github.io/mysql-operator/'
-    targetRevision: 2.1.2
+    repoURL: https://mysql.github.io/mysql-operator/
     chart: mysql-operator
+    targetRevision: 2.2.6 # pode deixar essa versão
+    path: ""
+
   destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: mysql-operator 
+    server: https://kubernetes.default.svc
+    namespace: mysql-operator
+
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true 
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true # evita destruir recursos
+      - RespectIgnoreDifferences=true
+      - ServerSideApply=true
+
+  ignoreDifferences:
+    - group: apiextensions.k8s.io
+      kind: CustomResourceDefinition
+      jqPathExpressions:
+        - .spec
