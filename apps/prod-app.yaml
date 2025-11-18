@@ -1,5 +1,3 @@
-# Checando a branch main!
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -9,8 +7,11 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/PauloHenriqueJunio/ivodocker.git'
-    path: prod
     targetRevision: main
+    path: helm/ivodocker-chart
+    helm:
+      valueFiles:
+        - values-prod.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: prod

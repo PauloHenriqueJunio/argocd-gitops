@@ -7,8 +7,11 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/PauloHenriqueJunio/ivodocker.git'
-    path: dev 
-    targetRevision: dev 
+    targetRevision: dev
+    path: helm/ivodocker-chart
+    helm:
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: dev
@@ -17,4 +20,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true 
+    - CreateNamespace=true
