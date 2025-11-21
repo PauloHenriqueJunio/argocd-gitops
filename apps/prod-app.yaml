@@ -12,12 +12,6 @@ spec:
     helm:
       valueFiles:
         - values-prod.yaml
-      values: |
-        dbCredentials:
-          DB_HOST: "mysql-prod"
-          DB_USER: "root"
-          DB_PASSWORD: "MyR00tP@ssw0rd"
-          DB_NAME: "ivodb"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: prod
