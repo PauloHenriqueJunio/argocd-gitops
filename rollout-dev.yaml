@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: ivodocker-dev
+  namespace: dev
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: ivodocker
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: ivodocker
+        env: dev
+    spec:
+      containers:
+        - name: ivodocker
+          image: paulohenriquejunio/ivodocker:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: DB_HOST
+              value: mysql-dev
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: rootUser
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: rootPassword
+            - name: DB_NAME
+              value: ivodb
+  strategy:
+    blueGreen:
+      # Service para a versão ativa (Blue)
+      activeService: ivodocker-dev-active
+      # Service para a versão preview (Green)
+      previewService: ivodocker-dev-preview
+      # Auto-promoção desabilitada - requer promoção manual
+      autoPromotionEnabled: false
+      # Tempo para reverter automaticamente se não promover (opcional)
+      scaleDownDelaySeconds: 30
+      # Tempo para manter a versão antiga após promoção
+      scaleDownDelayRevisionLimit: 1
