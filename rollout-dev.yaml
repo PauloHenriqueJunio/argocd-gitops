@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: ivodocker
-          image: paulohenriquejunio/ivodocker:latest
+          image: ghcr.io/paulohenriquejunio/ivodocker:with-migrations
           ports:
             - containerPort: 3000
           env:
